@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:memes/memes.dart';
 import 'package:memes/models/girls_memes.dart';
 import 'package:pinch_zoom_image_updated/pinch_zoom_image_updated.dart';
 
@@ -12,11 +13,32 @@ class Person_Details extends StatefulWidget {
 class _Person_DetailsState extends State<Person_Details> {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: PinchZoomImage(
-        image: ClipRRect(
-          borderRadius: BorderRadius.all(Radius.circular(10)),
-          child: Image(image: NetworkImage(widget.person_details.url),)
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.black,
+        elevation: 0,
+        leading: IconButton(
+            icon: Icon(
+              Icons.cancel,size: 45,
+              color: Colors.green,
+            ),
+            onPressed: () {
+              Navigator.pop(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Memes(),
+                ),
+              );
+            }),
+      ),
+      body: Container(
+        color: Colors.black,
+        child: Center(
+          child: PinchZoomImage(
+            image: ClipRRect(
+              child: Image(image: NetworkImage(widget.person_details.url),)
+            ),
+          ),
         ),
       ),
     );
