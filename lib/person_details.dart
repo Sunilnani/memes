@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:memes/models/girls_memes.dart';
+import 'package:pinch_zoom_image_updated/pinch_zoom_image_updated.dart';
 
 class Person_Details extends StatefulWidget {
   Person_Details({this.person_details});
@@ -11,14 +12,13 @@ class Person_Details extends StatefulWidget {
 class _Person_DetailsState extends State<Person_Details> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 10,vertical: 10),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(3),
-          image: DecorationImage(
-              image: widget.person_details.url !=null? NetworkImage(widget.person_details.url):Image.asset("img/modi.jpg"),fit: BoxFit.contain
-          ),
-        )
+    return Center(
+      child: PinchZoomImage(
+        image: ClipRRect(
+          borderRadius: BorderRadius.all(Radius.circular(10)),
+          child: Image(image: NetworkImage(widget.person_details.url),)
+        ),
+      ),
     );
   }
 }
